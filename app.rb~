@@ -81,6 +81,14 @@ get '/auth/failure' do
   redirect '/'
 end
 
+get '/stadistic' do
+  get_ip()
+  #haml :stadistic, :layout =>
+end
+
+def get_ip()
+  puts "request.ip = #{request.ip}"
+end
 
 post '/' do
   puts "inside post '/': #{params}"

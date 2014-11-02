@@ -55,7 +55,6 @@ get '/' do
   @list = ShortenedUrl.all(:order => [ :id.asc ], :limit => 20, :id_usu => " ") 
   # in SQL => SELECT * FROM "ShortenedUrl" ORDER BY "id" ASC
   haml :index
-
 end
 
 
@@ -136,3 +135,16 @@ get '/:shortened' do
 end
 
 error do erb :not_found end
+
+def get_remote_ip(env)
+  puts "request.url = #{request.url}"
+  puts "request.ip = #{request.ip}"
+
+  if addr = env['HTTP_X_FORWARDED_FOR']
+    puts "env['HTTP_X_FORWARDED_FOR'] = #{addr}"
+    addr.split('.').first.strip
+  else
+    puts "env['REMOTE_ADDR'] = #{env['REMOTE_ADDR']}"
+    env['REMOTE_ADDR']
+  end
+end
