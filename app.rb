@@ -148,3 +148,15 @@ def get_remote_ip(env)
     env['REMOTE_ADDR']
   end
 end
+
+['/info/:short_url', '/info/:short_url/:num_of_days', '/info/:short_url/:num_of_days/:map'].each do |path|
+  get path do
+    @link = Shortenedurl.first(:urlshort => params[:short_url])
+    @visit = Visit.all()
+    @num_days = (params[:num_of_days] || 15).to_i
+    @count_days_bar = Visit.count_days_bar(params[:short_url], @num_of_days)
+    chart = Visit.count_country_chart(params[:short_url], params[:map] || 'world')
+    @count_country_map = chart[:map]
+    @count_country_bar = chart[:bar]
+    haml :info
+end
