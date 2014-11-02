@@ -8,7 +8,8 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pry'
 gem 'erubis'
-gem 'chartkick'
+
+
 
 group :production do
 	gem "pg"
