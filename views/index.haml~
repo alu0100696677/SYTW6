@@ -1,0 +1,5 @@
+%ol
+  - @list.each do |url|
+    %li 
+      #{url.url} 
+      %a{:href=>"/#{url.id.to_s(Base)}"} #({url.id.to_s(Base)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (#{url.to}))

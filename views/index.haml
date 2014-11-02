@@ -1,0 +1,12 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th URL
+      %th URL-Acortada
+  %tbody
+  - @list.each do |url|
+    %tr
+      %td
+        %a{:href=>"/#{url.id.to_s(Base)}"} #{url.url}
+      %td
+        %a{:href=>"/#{url.to}"} #{url.id.to_s(Base)} #{url.to}

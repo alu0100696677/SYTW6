@@ -1,0 +1,54 @@
+!!!
+%html
+%head
+%meta{:content => "text/html; charset=UTF-8", "http-equiv" => "content-type"}/
+%meta{:charset => "utf-8"}/
+%title ShorterURL
+%meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}/
+%link{:href => "/css/bootstrap.min.css", :rel => "stylesheet"}/
+/[if lt IE 9]
+<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+%link{:href => "/css/EstiloCSS.css", :rel => "stylesheet"}/
+%body
+        .container-full
+                .row
+                        .col-lg-12.text-center.v-center
+                                %h1 TinyClone                   
+                                %p.lead Práctica 5.
+                                %br/
+                                -if !session[:auth]
+                                        %a.btn.btn-success.btn-lg{:href=>'/auth/google_oauth2'} Iniciar sesión     
+                                -else
+                                        %a.btn.btn-danger.btn-lg{:href=>'/auth/failure'} Cerrar sesión
+                                %br/
+                                %br/
+                                %br/
+                                %form.form-inline{:action => "/", :method => "post"}
+  
+                                        .form-group{:style => "text-align:center;margin:0 auto;"}
+                                                %label(for="url")               
+                                                %input.form-control.input-lg{:autofocus => "", :name => "url", :placeholder => "Introduzca su URL", :size => "60", :type => "text", :value => ""}/       
+                                                %input.form-control.input-lg{:autofocus => "", :name => "to", :placeholder => "URL acortada", :size =>     "15", :type => "text", :value => ""}/        
+                                                %button.btn.btn-lg.btn-primary{:type => "submit", :value => "submit"} Enter!
+                %br/
+                %br/
+                %br/
+                %br/
+                %br/
+                %br/
+                %br/
+                %br/
+                %br/
+        .row
+                .col-md-4.col-md-offset-4.container-down
+                        =yield
+        .row
+                .col-lg-12
+                        %br/
+                        %br/
+                        %p.text-center Sistemas y Tecnologías Web - Curso 2014/15
+                        %br/
+                        %br/
+/ script references
+%script{:src => "//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"}
+%script{:src => "../js/bootstrap.min.js"}

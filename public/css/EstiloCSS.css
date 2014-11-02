@@ -1,0 +1,31 @@
+html,body {
+        height:100%;           
+}
+h1 {
+        font-family: Arial,sans-serif
+        font-size:80px;
+        color:#01DF3A;         
+}     
+.lead {
+        color:#01DF3A;
+}     
+
+.container-full {
+        margin: 0 auto;        
+        width: 100%;
+        min-height:20%;        
+        background-color:#6E6E6E;
+        color:#eee;; 
+        overflow:hidden;
+}   
+.container-full a {  
+        color:#efefef;;
+        text-decoration:none;
+} 
+.v-center {
+        margin-top:2%;
+} 
+.container-down {              
+        margin-top:2%;         
+} 
+

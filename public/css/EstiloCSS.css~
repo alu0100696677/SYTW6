@@ -1,0 +1,82 @@
+			body
+			{
+			background-image:url('/img/background.jpg');
+			background-size: cover;
+			-moz-background-size: cover;
+			-webkit-background-size: cover;
+			-o-background-size: cover;
+			}
+			p{
+                                color: black;
+                                font-family: Verdana;
+                        }
+  			#cabecera{
+				/*background-color: black;*/
+				background-size:  100%;
+				height: 7em;
+			  	margin: 0;
+			  	padding: 0;
+			}
+
+			#cabecera p{
+				color: white;
+				text-align: center;
+				font-size: 2em;
+				line-height: 3.5em;
+			}
+
+			#re{
+				padding: 2em 2em 2em 2em;
+				font-family: Arial;
+				margin-top: 4em;
+				margin-left: 6em;
+				margin-bottom: 4em;
+				border: 3px solid gray;
+				width: 25em;
+				float: left;
+				font-size: 1em;
+			}
+			#izquierda{
+				width: 30em; 
+				text-align: center;
+				font-family:Arial;
+				color:black;
+				font-size: 1em;
+				padding: 2em 2em 2em 2em;
+				border: 3px solid gray;
+				float: right;
+				margin-top: 4em;
+				margin-right: 6em; 
+				margin-bottom: 4em;
+			}
+
+			#warning{
+				/*background-color: #FFCC66;*/
+				font-size: 1.5em;
+				/*color: red;*/
+				padding-left: 2em;
+				padding-right: 2em;
+				padding-top: 0.9em;
+				padding-bottom: 0.9em;
+
+			}
+
+			#col{
+				/*background-color: #E8E8E8 ;*/
+				text-align: left;
+				margin-bottom: 1em;
+			}
+			IMG.displayed {
+    				display: block;
+    				margin-left: auto;
+    				margin-right: auto;
+				max-width:100%;
+				max-height:100%;
+			 }
+			P.centrado {
+			text-align: center;
+			color: blue;
+                        font-family: Verdana;
+			font-size: 2em;
+                        line-height: 1.5em;
+			}
