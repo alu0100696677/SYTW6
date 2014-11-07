@@ -1,26 +1,5 @@
 .row
-    .col-md-6
-        .panel.panel-primary
-            .panel-heading
-                %h1 Información
-            .panel-body
-                %ul.list-group
-                    %li.list-group-item
-                        %p
-                            %strong URL Original
-                        %p #{@url.url}
-                    %li.list-group-item
-                        %p
-                            %strong URL Corta
-                        %a{:href => "/visitar/#{@url.to}", :title => "Visitar"}
-                            %span #{@url.to}
-                            %i.fa.fa-external-link
-                    %li.list-group-item
-                        %p
-                            %strong Fecha de Creación
-                        %p #{@url.created_at}
-
-    .col-md-6
+    .col-md-12
         .panel.panel-primary
             .panel-heading
                 %h1 Visitas

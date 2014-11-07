@@ -17,6 +17,8 @@ require 'dm-types'
 require 'restclient'
 require 'xmlsimple'
 
+require 'date'
+
 use OmniAuth::Builder do
   config = YAML.load_file 'config/config.yml'
   provider :google_oauth2, config['identifier'], config['secret']
@@ -128,7 +130,7 @@ get '/visita/:shortened' do
 
   #Datos que vamos a guardar en la tabla visits
   ip = get_remote_ip(env)
-  xml = RestClient.get "ip-api.com/xml/95.127.58.243"#{ip}"
+  xml = RestClient.get "ip-api.com/xml/#{ip}"
   data = XmlSimple.xml_in(xml.to_s)
   info = {"country"=>data["country"][0].to_s,"city"=>data["city"][0].to_s}
   
@@ -162,6 +164,7 @@ end
 
 get '/info/:short_url' do
   urlshort = Shortenedurl.first(:to => params[:short_url])
+  @url = urlshort
   @visit_country = Visit.count_by_country_with(urlshort.id).to_s
   @visit_date = Visit.date_with(urlshort.id).to_s
   haml :info

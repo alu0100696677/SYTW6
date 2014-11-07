@@ -1,3 +1,9 @@
+require 'dm-core'
+require 'dm-migrations'
+require 'restclient'
+require 'xmlsimple'
+require 'dm-timestamps'
+
 class Shortenedurl
   include DataMapper::Resource
 
@@ -21,11 +27,11 @@ class Visit
   belongs_to :shortenedurl
 
   def self.date_with(identifier)
-    repository(:default).adapter.query("SELECT date(created_at) AS date , count(*) AS count FROM visits WHERE shortenedurl_id = '#{identifier}' GROUP BY date")
+    repository(:default).adapter.select("SELECT date(created_at) AS date , count(*) AS count FROM visits WHERE shortenedurl_id = '#{identifier}' GROUP BY date(created_at)")
   end
 
   def self.count_by_country_with(identifier)
-    repository(:default).adapter.query("SELECT country, count(*) AS count FROM visits WHERE shortenedurl_id = '#{identifier}' GROUP BY country")
+    repository(:default).adapter.select("SELECT country, count(*) AS count FROM visits WHERE shortenedurl_id = '#{identifier}' GROUP BY country")
   end
 
 end

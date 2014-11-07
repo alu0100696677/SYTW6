@@ -11,9 +11,5 @@
         %a{:href=>"#{url.url}"} #{url.url}
       %td
         %a{:href=>"/visita/#{url.to}"} #{url.id.to_s(Base)} #{url.to}
-<<<<<<< HEAD
       %td
-        %a{:href=>"/info/#{url.to}", :title => "Estadísticas"} Estadistics
-=======
-
->>>>>>> master
+        %a{:href=>"/info/#{url.to}", :title => "Estadísticas"} Estadisticas
