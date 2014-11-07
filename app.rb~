@@ -129,9 +129,7 @@ get '/visita/:shortened' do
   #Datos que vamos a guardar en la tabla visits
   ip = get_remote_ip(env)
   xml = RestClient.get "ip-api.com/xml/95.127.58.243"#{ip}"
-  puts xml
   data = XmlSimple.xml_in(xml.to_s)
-  puts data
   info = {"country"=>data["country"][0].to_s,"city"=>data["city"][0].to_s}
   
   #Guardar los datos
@@ -163,8 +161,10 @@ def get_remote_ip(env)
 end
 
 get '/info/:short_url' do
-  @visit_country = Visit.count_by_country_with(params[:short_url])
-  @visit_date = Visit.date_with(params[:short_url])
+  urlshort = Shortenedurl.first(:to => params[:short_url])
+  @visit_country = Visit.count_by_country_with(urlshort.id).to_s
+  @visit_date = Visit.date_with(urlshort.id).to_s
+  haml :info
   # En la vista
   # - @visit_country.each do |item|
   #   %p pais: #{item.country}

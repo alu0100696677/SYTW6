@@ -8,17 +8,17 @@
                     %li.list-group-item
                         %p
                             %strong URL Original
-                        %p #{@link.url}
+                        %p #{@url.url}
                     %li.list-group-item
                         %p
                             %strong URL Corta
-                        %a{:href => "/visitar/#{@link.short_url}", :title => "Visitar"}
-                            %span #{@link.short_url}
+                        %a{:href => "/visitar/#{@url.to}", :title => "Visitar"}
+                            %span #{@url.to}
                             %i.fa.fa-external-link
                     %li.list-group-item
                         %p
                             %strong Fecha de Creación
-                        %p #{@link.created_at}
+                        %p #{@url.created_at}
 
     .col-md-6
         .panel.panel-primary
@@ -41,13 +41,11 @@
             .panel-body
                 %h2 País de visita
                 - @visit_country.each do |item|
-                  %p pais: #{item.country}
-                  %p visitas: #{item.count}
+                    %p pais: #{item.country}
+                    %p visitas: #{item.count}
                 geo_chart #{@visit_country}
                 %h2 Visitas por días
                 - @visit_date.each do |item|
-                  %p pais: #{item.date}
-                  %p visitas: #{item.count}
+                    %p pais: #{item.date}
+                    %p visitas: #{item.count}
                 column_chart #{@visit_date}
-
-
