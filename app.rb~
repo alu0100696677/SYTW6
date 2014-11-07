@@ -11,6 +11,12 @@ require 'pry'
 require 'erubis'
 require 'chartkick'
 
+require 'dm-core'
+require 'dm-timestamps'
+require 'dm-types'
+require 'restclient'
+require 'xmlsimple'
+
 use OmniAuth::Builder do
   config = YAML.load_file 'config/config.yml'
   provider :google_oauth2, config['identifier'], config['secret']
@@ -52,8 +58,8 @@ Base = 36
 get '/' do
   puts "inside get '/': #{[params]}"
   session[:email] = " "
-  @list = ShortenedUrl.all(:order => [ :id.asc ], :limit => 20, :id_usu => " ") 
-  # in SQL => SELECT * FROM "ShortenedUrl" ORDER BY "id" ASC
+  @list = Shortenedurl.all(:order => [ :id.asc ], :limit => 20, :id_usu => " ") 
+  # in SQL => SELECT * FROM "Shortenedurl" ORDER BY "id" ASC
   haml :index
 end
 
@@ -65,8 +71,8 @@ get '/auth/:name/callback' do
 	if session[:auth] then #@auth
 		begin
 			puts "inside get '/': #{params}"
-			@list = ShortenedUrl.all(:order => [ :id.asc ], :limit => 20, :id_usu => session[:email])
-			# in SQL => SELECT * FROM "ShortenedUrl" ORDER BY "id" ASC
+			@list = Shortenedurl.all(:order => [ :id.asc ], :limit => 20, :id_usu => session[:email])
+			# in SQL => SELECT * FROM "Shortenedurl" ORDER BY "id" ASC
 			haml :index
 		end
 	else
@@ -94,11 +100,11 @@ post '/' do
   uri = URI::parse(params[:url])
   if uri.is_a? URI::HTTP or uri.is_a? URI::HTTPS then
     begin
-        #@short_url = ShortenedUrl.first_or_create(:url => params[:url])
+        #@short_url = Shortenedurl.first_or_create(:url => params[:url])
     	if params[:to] == " "
-    		@short_url = ShortenedUrl.first_or_create(:url => params[:url], :id_usu => session[:email])
+    		@short_url = Shortenedurl.first_or_create(:url => params[:url], :id_usu => session[:email])
     	else
-    		@short_url = ShortenedUrl.first_or_create(:url => params[:url], :to => params[:to], :id_usu => session[:email])
+    		@short_url = Shortenedurl.first_or_create(:url => params[:url], :to => params[:to], :id_usu => session[:email])
     	end
       rescue Exception => e
         puts "EXCEPTION!!!!!!!!!!!!!!!!!!!"
@@ -113,13 +119,12 @@ end
 
 #Visitar url corta sin que case con todo
 get '/visita/:shortened' do
-  puts "inside get '/:shortened': #{params}"
-  #short_url = ShortenedUrl.first(:id => params[:shortened].to_i(Base))
+  puts "inside get '/visita/:shortened': #{params}"
+  #short_url = Shortenedurl.first(:id => params[:shortened].to_i(Base))
+  #to_url = Shortenedurl.first(:to => params[:shortened])
 
-  #to_url = ShortenedUrl.first(:to => params[:shortened])
-
-  url = ShortenedUrl.first(:to => params[:shortened])
-  short = (url != nil) ? url : ShortenedUrl.first(:id => params[:shortened].to_i(Base))
+  url = Shortenedurl.first(:to => params[:shortened])
+  short = (url != nil) ? url : Shortenedurl.first(:id => params[:shortened].to_i(Base))
 
   #Datos que vamos a guardar en la tabla visits
   ip = get_remote_ip(env)
@@ -132,11 +137,11 @@ get '/visita/:shortened' do
 
   redirect short.url, 301
 
-  #if to_url
+#  if to_url
 #	redirect to_url.url, 301
- # else
+#  else
 #	redirect short_url.url, 301
- # end
+#  end
 
 end
 
@@ -166,20 +171,6 @@ get '/info/:short_url' do
   # - @visit_date.each do |item|
   #   %p pais: #{item.date}
   #   %p visitas: #{item.count}
-  # bar_chart #{@visit_date}
-
-   
+  # column_chart #{@visit_date}   
 end
 
-#vistas con distinto nombre que hacen lo mismo, para url, numero de dias...
-['/info/:short_url', '/info/:short_url/:num_of_days', '/info/:short_url/:num_of_days/:map'].each do |path|
-  get path do
-    @link = Shortenedurl.first(:urlshort => params[:short_url])
-    @visit = Visit.all()
-    @num_days = (params[:num_days] || 15).to_i
-    @count_days_bar = Visit.count_days_bar(params[:short_url], @num_of_days)
-    chart = Visit.count_country_chart(params[:short_url], params[:map] || 'world')
-    @count_country_map = chart[:map]
-    @count_country_bar = chart[:bar]
-    haml :info
-end

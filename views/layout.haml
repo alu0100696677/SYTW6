@@ -3,7 +3,7 @@
 %head
 %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "content-type"}/
 %meta{:charset => "utf-8"}/
-%title ShorterURL
+%title Stadistics on URL Shortener
 %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}/
 %link{:href => "/css/bootstrap.min.css", :rel => "stylesheet"}/
 /[if lt IE 9]
@@ -13,8 +13,8 @@
         .container-full
                 .row
                         .col-lg-12.text-center.v-center
-                                %h1 TinyClone                   
-                                %p.lead Práctica 5.
+                                %h1 URL Shortener                    
+                                %p.lead Práctica 6.
                                 %br/
                                 -if !session[:auth]
                                         %a.btn.btn-success.btn-lg{:href=>'/auth/google_oauth2'} Iniciar sesión     
@@ -27,8 +27,8 @@
   
                                         .form-group{:style => "text-align:center;margin:0 auto;"}
                                                 %label(for="url")               
-                                                %input.form-control.input-lg{:autofocus => "", :name => "url", :placeholder => "Introduzca su URL", :size => "60", :type => "text", :value => ""}/       
-                                                %input.form-control.input-lg{:autofocus => "", :name => "to", :placeholder => "URL acortada", :size =>     "15", :type => "text", :value => ""}/        
+                                                %input.form-control.input-lg{:autofocus => "", :name => "url", :placeholder => "Introduzca su URL *", :size => "60", :type => "text", :value => ""}/       
+                                                %input.form-control.input-lg{:autofocus => "", :name => "to", :placeholder => "URL corta", :size =>     "15", :type => "text", :value => ""}/        
                                                 %button.btn.btn-lg.btn-primary{:type => "submit", :value => "submit"} Enter!
                 %br/
                 %br/

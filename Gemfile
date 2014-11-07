@@ -10,6 +10,10 @@ gem 'pry'
 gem 'erubis'
 gem 'chartkick'
 
+gem 'groupdate'
+gem 'rest-client'
+gem 'xml-simple'
+
 group :production do
 	gem "pg"
 	gem "dm-postgres-adapter"
