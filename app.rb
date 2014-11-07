@@ -128,14 +128,12 @@ get '/visita/:shortened' do
 
   #Datos que vamos a guardar en la tabla visits
   ip = get_remote_ip(env)
-  xml = RestClient.get "ip-api.com/xml/#{ip}"
-  puts xml
+  xml = RestClient.get "ip-api.com/xml/95.127.58.243"#{ip}"
   data = XmlSimple.xml_in(xml.to_s)
-  puts data
-  info = {"country"=>data['country'][0].to_s,"city"=>data['city'][0].to_s}
+  info = {"country"=>data["country"][0].to_s,"city"=>data["city"][0].to_s}
   
   #Guardar los datos
-  Visit.create(:ip => ip, :country => info.country, :city => info.city, :shortenedurl => short, :created_at => Time.now)
+  Visit.create(:ip => ip, :country => info['country'], :city => info['city'], :shortenedurl => short, :created_at => Time.now)
 
   redirect short.url, 301
 
