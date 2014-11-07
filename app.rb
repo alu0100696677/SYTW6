@@ -128,7 +128,7 @@ get '/visita/:shortened' do
 
   #Datos que vamos a guardar en la tabla visits
   ip = get_remote_ip(env)
-  xml = RestClient.get "ip-api.com/xml/95.127.58.243"#{ip}"
+  xml = RestClient.get "ip-api.com/xml/#{ip}"
   data = XmlSimple.xml_in(xml.to_s)
   info = {"country"=>data["country"][0].to_s,"city"=>data["city"][0].to_s}
   
