@@ -10,5 +10,5 @@
       %td
         %a{:href=>"#{url.url}"} #{url.url}
       %td
-        %a{:href=>"/#{url.to}"} #{url.id.to_s(Base)} #{url.to}
+        %a{:href=>"/visita/#{url.to}"} #{url.id.to_s(Base)} #{url.to}
 
