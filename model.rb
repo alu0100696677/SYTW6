@@ -21,11 +21,11 @@ class Visit
   belongs_to :shortenedurl
 
   def self.date_with(identifier)
-    repository(:default).adapter.query("SELECT date(created_at) AS date , count(*) AS count FROM visits WHERE shortenedurl_urlshort = '#{identifier}' GROUP BY date")
+    repository(:default).adapter.query("SELECT date(created_at) AS date , count(*) AS count FROM visits WHERE shortenedurl_id = '#{identifier}' GROUP BY date")
   end
 
   def self.count_by_country_with(identifier)
-    repository(:default).adapter.query("SELECT country, count(*) AS count FROM visits WHERE shortenedurl_urlshort = '#{identifier}' GROUP BY country")
+    repository(:default).adapter.query("SELECT country, count(*) AS count FROM visits WHERE shortenedurl_id = '#{identifier}' GROUP BY country")
   end
 
 end
