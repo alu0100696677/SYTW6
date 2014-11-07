@@ -4,27 +4,26 @@ Sistemas y Tecnologías Web
 Acortador de URL's
 
 
-Desarrolladores
+Desarrollo
 -----------
 
 - Mª Belén Armas Torres 
-- María Rojas Estévez
 
 Objetivo
 -----------
 
-Ampliar el acortador de url para que admita abreviaciones escritas por el usuario además, si el usuario está autenticado se le ofrecerá la opción de ver una lista con sus links. Todo esto se deplegará en Heroku con DataMapper.
+En esta práctica extenderemos la anterior con información estadística acerca de las visitas. Se pide la presentación de gráficos estadísticos del número de visitas por día, por país, etc.
 
 Enlace
 --------------
 
-* [Acortador] (https://sytw-shortener.herokuapp.com)
+* [Acortador] (https://sytw-stadistics.herokuapp.com/)
 
 Instalación
 --------------
 
 1. Instalaremos las gemas necesarias: `bundle install`
-2. Configuraremos el fichero `config.yml` añadiendo los identificadores utilizados en la practica anterior.
+2. Ejecutamos 'rake' para lanzar en local.
 
 
 Documentación de Interés

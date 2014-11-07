@@ -1,14 +1,13 @@
 
 Sistemas y Tecnologías Web
 ===========
-Acortador de URL's
+Acortador de URL's con estadísticas
 
 
-Desarrolladores
+Desarrollo
 -----------
 
 - Mª Belén Armas Torres 
-- María Rojas Estévez
 
 Objetivo
 -----------
@@ -24,7 +23,7 @@ Instalación
 --------------
 
 1. Instalaremos las gemas necesarias: `bundle install`
-
+2. Ejecutamos 'rake' para lanzar en local.
 
 
 Documentación de Interés
