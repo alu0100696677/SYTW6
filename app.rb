@@ -10,6 +10,7 @@ require 'omniauth-google-oauth2'
 require 'pry'
 require 'erubis'
 require 'chartkick'
+require 'groupdate'
 
 require 'dm-core'
 require 'dm-timestamps'
@@ -163,8 +164,19 @@ end
 get '/info/:short_url' do
   urlshort = Shortenedurl.first(:to => params[:short_url])
   @url = urlshort
-  @visit_country = Visit.count_by_country_with(urlshort.id).to_s
-  @visit_date = Visit.date_with(urlshort.id).to_s
+  @visit_country = Visit.count_by_country_with(urlshort.id)
+  @itemcountry = Hash.new
+  @visit_country.each do |item|
+    @itemcountry[item.country] = item.count
+  end
+  puts @visit_country
+  puts @itemcountry
+  @visit_date = Visit.date_with(urlshort.id)
+  @itemdate = Hash.new
+  @visit_date.each do |item|
+    @itemdate[item.date] = item.count
+  end
+
   haml :info
   # En la vista
   # - @visit_country.each do |item|
