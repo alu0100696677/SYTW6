@@ -9,7 +9,7 @@
                     %p pais: #{item}
                     %p visitas: #{visits}
                 %p #{@itemcountry}
-                = column_chart(@itemcountry)
+                = geo_chart(@itemcountry)
                 %h2 Visitas por días
                 - @itemdate.each do |item,visits|
                     %p fecha: #{item}

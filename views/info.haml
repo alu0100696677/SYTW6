@@ -5,13 +5,6 @@
                 %h1 Gráficas
             .panel-body
                 %h2 País de visita
-                - @itemcountry.each do |item,visits|
-                    %p pais: #{item}
-                    %p visitas: #{visits}
-                %p #{@itemcountry}
                 = geo_chart(@itemcountry)
                 %h2 Visitas por días
-                - @itemdate.each do |item,visits|
-                    %p fecha: #{item}
-                    %p visitas: #{visits}
                 = column_chart(@itemdate)
